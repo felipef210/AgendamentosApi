@@ -1,0 +1,11 @@
+version: '3.8'
+ 
+services:
+  web:
+    build: .
+    ports:
+      - "8080:8080"
+    environment:
+      - ASPNETCORE_ENVIRONMENT=Production
+      - ASPNETCORE_URLS=http://+:8080
+      - ConnectionStrings__DefaultConnection=Host=dpg-d41qus8dl3ps73bier7g-a.oregon-postgres.render.com;Database=lolomakeup_agendamentos;Username=admin;Password=vKXkXUQgXIQrDXTG7FcHn1Usehz7FvW3
