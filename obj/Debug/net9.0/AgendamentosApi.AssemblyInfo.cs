@@ -14,7 +14,7 @@ using System.Reflection;
 [assembly: System.Reflection.AssemblyCompanyAttribute("AgendamentosApi")]
 [assembly: System.Reflection.AssemblyConfigurationAttribute("Debug")]
 [assembly: System.Reflection.AssemblyFileVersionAttribute("1.0.0.0")]
-[assembly: System.Reflection.AssemblyInformationalVersionAttribute("1.0.0+66299a7dda836e05e93fc535232236283373746f")]
+[assembly: System.Reflection.AssemblyInformationalVersionAttribute("1.0.0+a2ea74e506195eb98d8bf0c248329584a618acbe")]
 [assembly: System.Reflection.AssemblyProductAttribute("AgendamentosApi")]
 [assembly: System.Reflection.AssemblyTitleAttribute("AgendamentosApi")]
 [assembly: System.Reflection.AssemblyVersionAttribute("1.0.0.0")]
