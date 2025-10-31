@@ -1,23 +1,23 @@
 {
   "format": 1,
   "restore": {
-    "C:\\Users\\MOSTEN\\Documents\\Estudos\\Projeto final\\AgendamentosApi\\AgendamentosApi.csproj": {}
+    "D:\\Estudos Programação\\projetos\\Agendamentos\\AgendamentosApi\\AgendamentosApi.csproj": {}
   },
   "projects": {
-    "C:\\Users\\MOSTEN\\Documents\\Estudos\\Projeto final\\AgendamentosApi\\AgendamentosApi.csproj": {
+    "D:\\Estudos Programação\\projetos\\Agendamentos\\AgendamentosApi\\AgendamentosApi.csproj": {
       "version": "1.0.0",
       "restore": {
-        "projectUniqueName": "C:\\Users\\MOSTEN\\Documents\\Estudos\\Projeto final\\AgendamentosApi\\AgendamentosApi.csproj",
+        "projectUniqueName": "D:\\Estudos Programação\\projetos\\Agendamentos\\AgendamentosApi\\AgendamentosApi.csproj",
         "projectName": "AgendamentosApi",
-        "projectPath": "C:\\Users\\MOSTEN\\Documents\\Estudos\\Projeto final\\AgendamentosApi\\AgendamentosApi.csproj",
-        "packagesPath": "C:\\Users\\MOSTEN\\.nuget\\packages\\",
-        "outputPath": "C:\\Users\\MOSTEN\\Documents\\Estudos\\Projeto final\\AgendamentosApi\\obj\\",
+        "projectPath": "D:\\Estudos Programação\\projetos\\Agendamentos\\AgendamentosApi\\AgendamentosApi.csproj",
+        "packagesPath": "C:\\Users\\Felipe\\.nuget\\packages\\",
+        "outputPath": "D:\\Estudos Programação\\projetos\\Agendamentos\\AgendamentosApi\\obj\\",
         "projectStyle": "PackageReference",
         "fallbackFolders": [
           "C:\\Program Files (x86)\\Microsoft Visual Studio\\Shared\\NuGetPackages"
         ],
         "configFilePaths": [
-          "C:\\Users\\MOSTEN\\AppData\\Roaming\\NuGet\\NuGet.Config",
+          "C:\\Users\\Felipe\\AppData\\Roaming\\NuGet\\NuGet.Config",
           "C:\\Program Files (x86)\\NuGet\\Config\\Microsoft.VisualStudio.FallbackLocation.config",
           "C:\\Program Files (x86)\\NuGet\\Config\\Microsoft.VisualStudio.Offline.config"
         ],
@@ -126,7 +126,7 @@
               "privateAssets": "all"
             }
           },
-          "runtimeIdentifierGraphPath": "C:\\Program Files\\dotnet\\sdk\\9.0.305/PortableRuntimeIdentifierGraph.json"
+          "runtimeIdentifierGraphPath": "C:\\Program Files\\dotnet\\sdk\\9.0.300/PortableRuntimeIdentifierGraph.json"
         }
       }
     }

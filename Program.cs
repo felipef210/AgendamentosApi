@@ -25,7 +25,7 @@ builder.Services.AddSwaggerGen();
 
 builder.Services.AddDbContext<Context>(options =>
 {
-    options.UseNpgsql(builder.Configuration["ConnectionStrings:DefaultConnection"]);
+    options.UseNpgsql(builder.Configuration["DefaultConnection"]);
 });
 
 builder.Services.AddExceptionHandler<GlobalExceptionHandler>();
