@@ -1,4 +1,4 @@
-# 🗓 AgendamentosApp
+# 🗓 AgendamentosApi
 
 Aplicativo de gerenciamento de agendamentos para estúdio de beleza, permitindo que clientes agendem serviços e administradores gerenciem todos os agendamentos.
 
@@ -50,6 +50,19 @@ AgendamentosApi/
 ✅ Autenticação com JWT
 
 ✅ Controle de permissões (admin vs user)
+
+## 🔐 Autenticação e Permissões
+
+- **Usuário cliente:** Pode ver, criar, editar e deletar apenas seus agendamentos;
+- **Usuário administrador**: Pode ver, editar e deletar todos os agendamentos.
+
+## 📌 Regras de Negócio
+
+- Agendamentos devem ser futuros;
+
+- Horário duplicado não permitido;
+
+- Admin vê todos os agendamentos, usuário só os seus;
 
 ## 🛠 Como Rodar o Projeto
 
