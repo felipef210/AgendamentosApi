@@ -35,7 +35,7 @@ public class UsuarioController : ControllerBase
     public async Task<IActionResult> Cadastrar([FromBody] CadastroDTO cadastroDTO)
     {
         await _usuarioService.Cadastrar(cadastroDTO);
-        return Ok("Cadastro efetuado com sucesso!");
+        return Ok(new { message = "Cadastro efetuado com sucesso!" });
     }
 
     [HttpPost("login")]
