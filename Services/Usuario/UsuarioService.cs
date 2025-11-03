@@ -53,10 +53,13 @@ public class UsuarioService : IUsuarioService
             throw new ParametroInvalidoException("Digite seu nome completo para efetuar o cadastro!");
 
         if (await EmailExiste(cadastroDTO.Email))
-            throw new ParametroInvalidoException("E-mail já cadastrado, por favor insira outro e-mail.");
+            throw new ParametroInvalidoException("E-mail já cadastrado, por favor insira outro e-mail!");
 
         if (!IsPasswordValid(cadastroDTO.Senha))
             throw new ParametroInvalidoException("Senha no formato inválido!");
+
+        if (cadastroDTO.DataNascimento > DateTime.UtcNow)
+            throw new ParametroInvalidoException("Data de nascimento deve ser a data atual ou anterior ao dia atual.");
 
 
         var usuario = _mapper.Map<UsuarioModel>(cadastroDTO);
