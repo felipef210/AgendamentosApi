@@ -3,6 +3,7 @@ using System;
 using AgendamentosApi.Data;
 using Microsoft.EntityFrameworkCore;
 using Microsoft.EntityFrameworkCore.Infrastructure;
+using Microsoft.EntityFrameworkCore.Migrations;
 using Microsoft.EntityFrameworkCore.Storage.ValueConversion;
 using Npgsql.EntityFrameworkCore.PostgreSQL.Metadata;
 
@@ -11,9 +12,11 @@ using Npgsql.EntityFrameworkCore.PostgreSQL.Metadata;
 namespace AgendamentosApi.Migrations
 {
     [DbContext(typeof(Context))]
-    partial class ContextModelSnapshot : ModelSnapshot
+    [Migration("20251104135958_CriandoBancoDeDados")]
+    partial class CriandoBancoDeDados
     {
-        protected override void BuildModel(ModelBuilder modelBuilder)
+        /// <inheritdoc />
+        protected override void BuildTargetModel(ModelBuilder modelBuilder)
         {
 #pragma warning disable 612, 618
             modelBuilder
@@ -37,15 +40,62 @@ namespace AgendamentosApi.Migrations
                     b.Property<DateTime>("DataHoraAgendamento")
                         .HasColumnType("timestamp with time zone");
 
-                    b.Property<string>("Servico")
-                        .IsRequired()
-                        .HasColumnType("text");
+                    b.Property<int>("ServicoId")
+                        .HasColumnType("integer");
 
                     b.HasKey("Id");
 
                     b.HasIndex("ClienteId");
 
+                    b.HasIndex("ServicoId");
+
                     b.ToTable("Agendamentos");
+                });
+
+            modelBuilder.Entity("AgendamentosApi.Models.Servico", b =>
+                {
+                    b.Property<int>("Id")
+                        .ValueGeneratedOnAdd()
+                        .HasColumnType("integer");
+
+                    NpgsqlPropertyBuilderExtensions.UseIdentityByDefaultColumn(b.Property<int>("Id"));
+
+                    b.Property<int>("DuracaoEmMinutos")
+                        .HasColumnType("integer");
+
+                    b.Property<string>("Nome")
+                        .IsRequired()
+                        .HasColumnType("text");
+
+                    b.HasKey("Id");
+
+                    b.ToTable("Servicos");
+
+                    b.HasData(
+                        new
+                        {
+                            Id = 1,
+                            DuracaoEmMinutos = 60,
+                            Nome = "Maquiagem"
+                        },
+                        new
+                        {
+                            Id = 2,
+                            DuracaoEmMinutos = 120,
+                            Nome = "Penteado"
+                        },
+                        new
+                        {
+                            Id = 3,
+                            DuracaoEmMinutos = 40,
+                            Nome = "Sobrancelha"
+                        },
+                        new
+                        {
+                            Id = 4,
+                            DuracaoEmMinutos = 180,
+                            Nome = "Curso"
+                        });
                 });
 
             modelBuilder.Entity("AgendamentosApi.Models.Usuario", b =>
@@ -262,7 +312,15 @@ namespace AgendamentosApi.Migrations
                         .OnDelete(DeleteBehavior.Cascade)
                         .IsRequired();
 
+                    b.HasOne("AgendamentosApi.Models.Servico", "Servico")
+                        .WithMany()
+                        .HasForeignKey("ServicoId")
+                        .OnDelete(DeleteBehavior.Cascade)
+                        .IsRequired();
+
                     b.Navigation("Cliente");
+
+                    b.Navigation("Servico");
                 });
 
             modelBuilder.Entity("Microsoft.AspNetCore.Identity.IdentityRoleClaim<string>", b =>

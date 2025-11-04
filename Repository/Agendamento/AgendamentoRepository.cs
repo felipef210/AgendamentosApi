@@ -46,6 +46,7 @@ public class AgendamentoRepository : IAgendamentoRepository
     {
         var agendamentos = await _context.Agendamentos
             .Include(a => a.Cliente)
+            .Include(s => s.Servico)
             .ToListAsync();
         return agendamentos;
     }
@@ -54,24 +55,34 @@ public class AgendamentoRepository : IAgendamentoRepository
     {
         var agendamentos = await _context.Agendamentos
             .Include(a => a.Cliente)
+            .Include(s => s.Servico)
             .Where(a => a.ClienteId == id)
             .ToListAsync();
 
         return agendamentos;
     }
 
-    public async Task<bool> DataHoraJaReservada(DateTime dataHora, int? ignorarId = null)
+    public async Task<bool> DataHoraJaReservada(DateTime dataHora, int servicoId, int? ignorarId = null)
     {
-        var query = _context.Agendamentos.AsQueryable();
+        var servicoAtual = await _context.Servicos.FindAsync(servicoId);
+
+        if (servicoAtual == null)
+            throw new Exception("Serviço não encontrado.");
+
+
+        var inicioServico = dataHora;
+        var fimServico = dataHora.AddMinutes(servicoAtual.DuracaoEmMinutos);
+
+        var query = _context.Agendamentos
+            .Include(a => a.Servico)
+            .AsQueryable();
 
         if (ignorarId.HasValue)
             query = query.Where(a => a.Id != ignorarId.Value);
 
-        var inicioJanela = dataHora.AddHours(-1);
-        var fimJanela = dataHora.AddHours(1);
 
         var agendamentoExiste = await query.AnyAsync(a =>
-        a.DataHoraAgendamento > inicioJanela && a.DataHoraAgendamento < fimJanela);
+            (inicioServico < a.DataHoraAgendamento.AddMinutes(a.Servico.DuracaoEmMinutos)) && a.DataHoraAgendamento < fimServico);
 
         return agendamentoExiste;
     }

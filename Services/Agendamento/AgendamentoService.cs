@@ -5,6 +5,7 @@ using Microsoft.AspNetCore.Identity;
 using Microsoft.AspNetCore.Mvc;
 using UsuarioModel = AgendamentosApi.Models.Usuario;
 using AgendamentoModel = AgendamentosApi.Models.Agendamento;
+using AgendamentosApi.Models;
 
 namespace AgendamentosApi.Services.Agendamento;
 
@@ -50,7 +51,7 @@ public class AgendamentoService : IAgendamentoService
         if (criarAgendamentoDTO.DataHoraAgendamento < DateTime.UtcNow)
             throw new ParametroInvalidoException("A data do agendamento deve ser a frente da data e hora atual.");
 
-        if (await DataHoraJaReservada(criarAgendamentoDTO.DataHoraAgendamento))
+        if (await DataHoraJaReservada(criarAgendamentoDTO.DataHoraAgendamento, criarAgendamentoDTO.Servico))
             throw new ParametroInvalidoException("Horário de agendamento indisponível, por favor selecione outro horário.");
 
         var agendamento = _mapper.Map<AgendamentoModel>(criarAgendamentoDTO);
@@ -86,7 +87,7 @@ public class AgendamentoService : IAgendamentoService
         if (editarAgendamentoDTO.DataHoraAgendamento < DateTime.UtcNow)
             throw new ParametroInvalidoException("A data do agendamento deve ser a frente da data e hora atual.");
         
-        if (await DataHoraJaReservada(editarAgendamentoDTO.DataHoraAgendamento, id))
+        if (await DataHoraJaReservada(editarAgendamentoDTO.DataHoraAgendamento, editarAgendamentoDTO.Servico, id))
             throw new ParametroInvalidoException("Horário de agendamento indisponível, por favor selecione outro horário.");
         
         _mapper.Map(editarAgendamentoDTO, agendamento);
@@ -158,8 +159,8 @@ public class AgendamentoService : IAgendamentoService
         return agendamentosDTO;
     }
     
-    private async Task<bool> DataHoraJaReservada(DateTime dataHora, int? ignorarId = null)
+    private async Task<bool> DataHoraJaReservada(DateTime dataHora, int servicoId, int? ignorarId = null)
     {
-        return await _agendamentoRepository.DataHoraJaReservada(dataHora, ignorarId);
+        return await _agendamentoRepository.DataHoraJaReservada(dataHora, servicoId, ignorarId);
     }
 }

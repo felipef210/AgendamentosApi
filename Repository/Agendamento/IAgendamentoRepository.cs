@@ -12,5 +12,5 @@ public interface IAgendamentoRepository
     Task EditarAgendamento(AgendamentoModel agendamento, int id);
     Task ExcluirAgendamento(int id);
     Task<List<AgendamentoModel>> ListarAgendamentosPorUsuario(string id);
-    Task<bool> DataHoraJaReservada(DateTime dataHora, int? ignorarId);
+    Task<bool> DataHoraJaReservada(DateTime dataHora, int servicoId, int? ignorarId);
 }
